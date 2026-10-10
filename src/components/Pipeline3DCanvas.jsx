@@ -18,6 +18,12 @@ export default function Pipeline3DCanvas({ onModelClick }) {
 
     const width = container.clientWidth || window.innerWidth;
     const height = container.clientHeight || window.innerHeight;
+    const initialRadius =
+      width < height
+        ? Math.min(18.5, 11.2 * (height / Math.max(width, 280)) * 0.62)
+        : 11.2;
+    currentSpherical.current.radius = initialRadius;
+    targetSpherical.current.radius = initialRadius;
 
     // Scene setup with deep slate atmosphere (matching nexus-nurture-lake.vercel.app)
     const scene = new THREE.Scene();

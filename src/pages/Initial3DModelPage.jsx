@@ -30,7 +30,7 @@ export default function Initial3DModelPage() {
         position: 'fixed',
         inset: 0,
         width: '100vw',
-        height: '100vh',
+        height: '100dvh',
         overflow: 'hidden',
         userSelect: 'none',
         background: '#0f172a',
@@ -71,14 +71,15 @@ export default function Initial3DModelPage() {
       >
         <h1
           style={{
-            fontSize: 'clamp(1.85rem, 4vw, 3.25rem)',
+            fontSize: 'clamp(1.35rem, 5.5vw, 3.25rem)',
             fontWeight: 900,
-            letterSpacing: '0.32em',
+            letterSpacing: 'clamp(0.14em, 2.5vw, 0.32em)',
             textTransform: 'uppercase',
             color: '#ffffff',
             textAlign: 'center',
             margin: 0,
             padding: '0 16px',
+            maxWidth: '100vw',
             textShadow:
               '0 0 28px rgba(56, 189, 248, 0.65), 0 0 60px rgba(2, 132, 199, 0.45), 0 4px 20px rgba(0, 0, 0, 0.9)'
           }}

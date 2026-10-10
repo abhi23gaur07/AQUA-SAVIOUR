@@ -196,7 +196,7 @@ export default function HydroMoistureMapPage() {
           </h1>
         </div>
 
-        <div className="flex items-center gap-sm">
+        <div className="flex items-center gap-xs flex-wrap">
           <button
             type="button"
             className="btn btn-secondary btn-sm"
@@ -245,7 +245,7 @@ export default function HydroMoistureMapPage() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
               gap: '12px',
               alignItems: 'end'
             }}
@@ -292,7 +292,7 @@ export default function HydroMoistureMapPage() {
               </div>
             </div>
 
-            <div>
+            <div style={{ minWidth: 0 }}>
               <label className="form-label" style={{ fontSize: '0.72rem' }}>
                 Live Multi-Depth Soil Moisture Endpoint
               </label>
@@ -316,59 +316,15 @@ export default function HydroMoistureMapPage() {
       )}
 
       {/* MAIN DARK HYDRO-GEOLOGICAL MOISTURE MONITOR MAP (Exact match to Screenshot 1) */}
-      <div
-        style={{
-          position: 'relative',
-          width: '100%',
-          height: '490px',
-          borderRadius: '14px',
-          overflow: 'hidden',
-          border: '1px solid var(--border)',
-          boxShadow: 'var(--shadow-md)',
-          background: '#18181b'
-        }}
-      >
-        {/* TOP-LEFT FLOATING PILL: "Open-Meteo Hydro-Geological Moisture Monitor" (Exact match to Screenshot 1) */}
-        <div
-          style={{
-            position: 'absolute',
-            top: '16px',
-            left: '16px',
-            zIndex: 500,
-            background: '#ffffff',
-            color: '#1e293b',
-            padding: '7px 16px',
-            borderRadius: '999px',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            boxShadow: '0 4px 14px rgba(0, 0, 0, 0.4)',
-            fontWeight: 800,
-            fontSize: '0.84rem'
-          }}
-        >
-          <Droplets size={17} color="#0ea5e9" />
-          <span>Open-Meteo Hydro-Geological Moisture Monitor</span>
+      <div className="hydro-map-container">
+        {/* TOP-LEFT FLOATING PILL: "Open-Meteo Hydro-Geological Moisture Monitor" */}
+        <div className="hydro-map-title-pill">
+          <Droplets size={16} color="#0ea5e9" style={{ flexShrink: 0 }} />
+          <span className="truncate">Open-Meteo Hydro-Geological Moisture Monitor</span>
         </div>
 
-        {/* TOP-RIGHT FLOATING CHECKBOX CARD (Exact match to Screenshot 1) */}
-        <div
-          style={{
-            position: 'absolute',
-            top: '16px',
-            right: '16px',
-            zIndex: 500,
-            background: '#ffffff',
-            color: '#334155',
-            padding: '10px 14px',
-            borderRadius: '10px',
-            boxShadow: '0 6px 20px rgba(0, 0, 0, 0.45)',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '8px',
-            minWidth: '240px'
-          }}
-        >
+        {/* TOP-RIGHT / MOBILE-BOTTOM FLOATING CHECKBOX CARD */}
+        <div className="hydro-map-controls-card">
           <label
             style={{
               display: 'flex',

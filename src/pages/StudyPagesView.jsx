@@ -33,14 +33,7 @@ export default function StudyPagesView() {
         </div>
       </div>
 
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
-          gap: '18px',
-          alignItems: 'start'
-        }}
-      >
+      <div className="split-two-col">
         <div className="card" style={{ padding: '14px' }}>
           <img
             src={page.image}

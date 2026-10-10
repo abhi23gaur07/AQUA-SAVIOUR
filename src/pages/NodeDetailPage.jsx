@@ -244,13 +244,7 @@ export default function NodeDetailPage() {
       </div>
 
       {/* SPLIT: 5 MONITORED INDICATORS (LEFT) + LIVE 256-SAMPLE DMA WAVEFORM & HARDWARE (RIGHT) */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(0, 1.15fr) minmax(0, 0.85fr)',
-          gap: '18px'
-        }}
-      >
+      <div className="split-node-detail">
         {/* LEFT: 5 MULTI-INDICATOR DETECTOR GAUGES */}
         <div className="card">
           <div className="card-header">

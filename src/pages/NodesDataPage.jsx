@@ -36,13 +36,7 @@ export default function NodesDataPage() {
       </div>
 
       {/* 4 NODE DETAIL CARDS GRID (Click any card to open its dedicated /detail/:nodeId portal) */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          gap: '16px'
-        }}
-      >
+      <div className="nodes-cards-grid">
         {nodes.map((node) => {
           const isCritical = node.riskLevel === 'L3';
           return (
@@ -67,7 +61,7 @@ export default function NodesDataPage() {
                 style={{ marginBottom: '10px' }}
               >
                 <div>
-                  <div className="flex items-center gap-xs">
+                  <div className="flex items-center gap-xs flex-wrap">
                     <span style={{ fontSize: '1.1rem', fontWeight: 900 }}>
                       {node.id}
                     </span>
@@ -86,7 +80,7 @@ export default function NodesDataPage() {
 
               {/* AI Risk & Leak Distance Strip */}
               <div
-                className="flex items-center justify-between"
+                className="flex items-center justify-between flex-wrap gap-xs"
                 style={{
                   background: 'var(--bg)',
                   padding: '8px 12px',
@@ -112,14 +106,7 @@ export default function NodesDataPage() {
               </div>
 
               {/* 5 Monitored Indicators Mini Grid */}
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(5, 1fr)',
-                  gap: '6px',
-                  marginBottom: '12px'
-                }}
-              >
+              <div className="five-indicators-mini-grid">
                 {[
                   {
                     label: 'Acoustic',

@@ -201,13 +201,7 @@ export default function LiveMapDashboardPage() {
       </div>
 
       {/* 7 KPI METRIC CARDS ROW (Exact visual match to Screenshot 4) */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
-          gap: '12px'
-        }}
-      >
+      <div className="kpi-grid-7">
         {/* 1. OVERALL RISK */}
         <div
           className="card"
@@ -381,23 +375,14 @@ export default function LiveMapDashboardPage() {
       </div>
 
       {/* MAIN SURVEILLANCE SPLIT: SATELLITE MAP (LEFT) + SURFACE SENSOR NODES (RIGHT) */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(0, 1fr) 360px',
-          gap: '18px',
-          alignItems: 'stretch',
-          flex: 1,
-          minHeight: '540px'
-        }}
-      >
+      <div className="split-map-sidebar">
         {/* LEFT: GEOGRAPHICAL SURFACE SURVEILLANCE MAP */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', minWidth: 0 }}>
           <div
             className="flex items-center justify-between flex-wrap gap-sm"
             style={{ padding: '2px 0' }}
           >
-            <div className="flex items-center gap-sm">
+            <div className="flex items-center gap-sm flex-wrap">
               <h2 style={{ fontSize: '1.02rem', fontWeight: 800 }}>
                 Geographical Surface Surveillance
               </h2>
@@ -416,7 +401,7 @@ export default function LiveMapDashboardPage() {
               </span>
             </div>
 
-            <div className="flex items-center gap-xs">
+            <div className="flex items-center gap-xs flex-wrap">
               <button
                 type="button"
                 className="btn btn-secondary btn-sm"
@@ -451,7 +436,7 @@ export default function LiveMapDashboardPage() {
             </div>
           </div>
 
-          <div style={{ flex: 1, minHeight: '500px' }}>
+          <div style={{ flex: 1, minHeight: '420px' }}>
             <div className="mine-map-wrapper">
               {/* Top-Right Floating "Map Layers" Button (Exact match to Screenshot 4) */}
               <div className="map-layer-control">

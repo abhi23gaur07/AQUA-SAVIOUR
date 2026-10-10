@@ -157,31 +157,9 @@ export default function LoginPortalPage() {
   };
 
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexWrap: 'wrap',
-        background: 'var(--bg)',
-        color: 'var(--text-primary)',
-        fontFamily: 'var(--font-sans)'
-      }}
-    >
+    <div className="login-split-layout">
       {/* LEFT PANEL: AQUA SAVIOUR / AQUASAFE AI INTELLIGENCE BRIEFING */}
-      <div
-        style={{
-          flex: '1 1 50%',
-          minWidth: '360px',
-          background: 'linear-gradient(135deg, #0f172a 0%, #082f49 55%, #020617 100%)',
-          color: '#ffffff',
-          padding: '40px 44px',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          position: 'relative',
-          overflow: 'hidden'
-        }}
-      >
+      <div className="login-left-panel">
         {/* Radial Dot Matrix Pattern */}
         <div
           style={{
@@ -293,7 +271,7 @@ export default function LoginPortalPage() {
 
             <h1
               style={{
-                fontSize: '2.05rem',
+                fontSize: 'clamp(1.45rem, 4vw, 2.05rem)',
                 fontWeight: 900,
                 lineHeight: 1.18,
                 color: '#ffffff',
@@ -408,7 +386,7 @@ export default function LoginPortalPage() {
               <div
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
                   gap: '8px'
                 }}
               >
@@ -487,17 +465,7 @@ export default function LoginPortalPage() {
       </div>
 
       {/* RIGHT PANEL: PORTAL OF LOGIN WITH THE 5 ROLES & PORTAL DESTINATION */}
-      <div
-        style={{
-          flex: '1 1 46%',
-          minWidth: '360px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '32px 38px',
-          background: 'var(--bg)'
-        }}
-      >
+      <div className="login-right-panel">
         <div style={{ width: '100%', maxWidth: '480px' }}>
           {/* Sign In / Create Account Tab Switcher */}
           <div

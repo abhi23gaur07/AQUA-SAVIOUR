@@ -29,13 +29,7 @@ export default function AnalyticsPage() {
       </div>
 
       {/* INTERACTIVE CROSS-CORRELATION PEAK MATCHER */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
-          gap: '18px'
-        }}
-      >
+      <div className="split-two-col">
         <div className="card" style={{ borderTop: '4px solid #7c3aed' }}>
           <div className="card-header">
             <div className="card-title flex items-center gap-xs">

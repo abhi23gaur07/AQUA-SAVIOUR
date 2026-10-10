@@ -138,16 +138,9 @@ export default function GisRealtimePage() {
       </div>
 
       {/* SPLIT: INTERACTIVE GIS MAP (LEFT) + TIME-OF-FLIGHT GIS CALCULATOR (RIGHT) */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(0, 1fr) 390px',
-          gap: '18px',
-          alignItems: 'stretch'
-        }}
-      >
+      <div className="split-gis-sidebar">
         {/* LEFT: GIS MAP WITH BASE LAYER SWITCHER */}
-        <div className="card" style={{ padding: '14px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        <div className="card" style={{ padding: '14px', display: 'flex', flexDirection: 'column', gap: '12px', minWidth: 0 }}>
           <div className="flex items-center justify-between flex-wrap gap-sm">
             <div className="flex items-center gap-xs">
               <Globe size={16} color="var(--primary)" />
