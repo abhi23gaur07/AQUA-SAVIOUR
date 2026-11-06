@@ -64,6 +64,7 @@ export default function HydroMoistureMapPage() {
   const [porePressureZones, setPorePressureZones] = useState(true);
   const [hydroStratification, setHydroStratification] = useState(true);
   const [showNodePins, setShowNodePins] = useState(true);
+  const [basemapStyle, setBasemapStyle] = useState('dark'); // 'dark' | 'satellite' | 'street'
 
   // Open-Source API Provider & API Key state
   const [selectedProviderId, setSelectedProviderId] = useState('open-meteo');
@@ -432,9 +433,54 @@ export default function HydroMoistureMapPage() {
               <span>Show Node Soil Probes (N01–N04)</span>
             </label>
           </div>
+
+          <div
+            style={{
+              borderTop: '1px solid #e2e8f0',
+              paddingTop: '8px',
+              marginTop: '4px'
+            }}
+          >
+            <div
+              style={{
+                fontSize: '0.72rem',
+                fontWeight: 800,
+                color: '#475569',
+                marginBottom: '5px'
+              }}
+            >
+              Base Map Layer
+            </div>
+            <div className="flex items-center gap-xs">
+              {[
+                { id: 'dark', label: 'Dark Canvas' },
+                { id: 'satellite', label: 'Satellite' },
+                { id: 'street', label: 'Street' }
+              ].map((b) => (
+                <button
+                  key={b.id}
+                  type="button"
+                  onClick={() => setBasemapStyle(b.id)}
+                  style={{
+                    padding: '3px 8px',
+                    fontSize: '0.7rem',
+                    fontWeight: 700,
+                    borderRadius: '6px',
+                    border: '1px solid',
+                    cursor: 'pointer',
+                    background: basemapStyle === b.id ? '#0284c7' : '#ffffff',
+                    color: basemapStyle === b.id ? '#ffffff' : '#475569',
+                    borderColor: basemapStyle === b.id ? '#0284c7' : '#cbd5e1'
+                  }}
+                >
+                  {b.label}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* LEAFLET DARK MATTER HYDRO-GEOLOGICAL MAP */}
+        {/* LEAFLET DARK MATTER HYDRO-GEOLOGICAL MAP (Watermark-Free Esri Dark Gray / Satellite / OSM) */}
         <MapContainer
           center={[28.6138, 77.2088]}
           zoom={16}
@@ -442,11 +488,36 @@ export default function HydroMoistureMapPage() {
           scrollWheelZoom={true}
           style={{ width: '100%', height: '100%', background: '#18181b' }}
         >
-          <TileLayer
-            attribution="&copy; OpenStreetMap &copy; CARTO"
-            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-            maxZoom={19}
-          />
+          {basemapStyle === 'dark' && (
+            <>
+              <TileLayer
+                attribution="Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ"
+                url="https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+                maxNativeZoom={16}
+                maxZoom={19}
+              />
+              <TileLayer
+                attribution=""
+                url="https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}"
+                maxNativeZoom={16}
+                maxZoom={19}
+              />
+            </>
+          )}
+          {basemapStyle === 'satellite' && (
+            <TileLayer
+              attribution="Tiles &copy; Esri"
+              url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+              maxZoom={19}
+            />
+          )}
+          {basemapStyle === 'street' && (
+            <TileLayer
+              attribution="&copy; OpenStreetMap contributors"
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              maxZoom={19}
+            />
+          )}
 
           {/* 1. Outer Dashed Blue Hydro-Geological Perimeter (matching Screenshot 1) */}
           {moistureHeatmap && (
