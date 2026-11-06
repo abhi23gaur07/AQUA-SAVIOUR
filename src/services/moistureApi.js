@@ -24,8 +24,10 @@ export const OPEN_SOURCE_MOISTURE_PROVIDERS = [
   {
     id: 'nasa-power',
     name: 'NASA POWER Earth Science Soil Wetness API',
-    apiKey: import.meta.env.VITE_NASA_POWER_API_KEY || 'DEMO_KEY',
-    keyType: 'Official NASA Open-Source Public Key (DEMO_KEY)',
+    apiKey:
+      import.meta.env.VITE_NASA_POWER_API_KEY ||
+      'THKPfRrzbttFWDkwPbpnzCNgMgFPdqcpWKkc8gQC',
+    keyType: 'Personal NASA Earth Science API Key (api.nasa.gov)',
     endpoint: 'https://power.larc.nasa.gov/api/temporal/daily/point',
     layersSupported: [
       'GWETTOP — Surface Soil Wetness (0–5 cm)',
@@ -95,13 +97,21 @@ export async function fetchLiveHydroMoistureData({
       OPEN_SOURCE_MOISTURE_PROVIDERS.find((p) => p.id === providerId) ||
       OPEN_SOURCE_MOISTURE_PROVIDERS[0];
 
+    const activeKey = customApiKey || selectedProvider.apiKey;
+    const effectiveEndpoint =
+      providerId === 'nasa-power'
+        ? `https://power.larc.nasa.gov/api/temporal/daily/point?parameters=GWETTOP,GWETROOT,GWETPROF&community=AG&longitude=${longitude}&latitude=${latitude}&api_key=${activeKey}`
+        : providerId === 'agromonitoring'
+        ? `https://api.agromonitoring.com/agro/1.0/soil?appid=${activeKey}`
+        : url;
+
     return {
       ok: true,
       live: true,
       providerId: selectedProvider.id,
       providerName: selectedProvider.name,
-      activeApiKey: customApiKey || selectedProvider.apiKey,
-      endpointUrl: url,
+      activeApiKey: activeKey,
+      endpointUrl: effectiveEndpoint,
       latencyMs,
       fetchedAt: new Date().toLocaleTimeString(),
       elevationM: data.elevation ?? 214,
@@ -140,13 +150,21 @@ export async function fetchLiveHydroMoistureData({
       OPEN_SOURCE_MOISTURE_PROVIDERS.find((p) => p.id === providerId) ||
       OPEN_SOURCE_MOISTURE_PROVIDERS[0];
 
+    const activeKey = customApiKey || selectedProvider.apiKey;
+    const effectiveEndpoint =
+      providerId === 'nasa-power'
+        ? `https://power.larc.nasa.gov/api/temporal/daily/point?parameters=GWETTOP,GWETROOT,GWETPROF&community=AG&longitude=${longitude}&latitude=${latitude}&api_key=${activeKey}`
+        : providerId === 'agromonitoring'
+        ? `https://api.agromonitoring.com/agro/1.0/soil?appid=${activeKey}`
+        : selectedProvider.endpoint;
+
     return {
       ok: true,
       live: false,
       providerId: selectedProvider.id,
       providerName: selectedProvider.name,
-      activeApiKey: customApiKey || selectedProvider.apiKey,
-      endpointUrl: selectedProvider.endpoint,
+      activeApiKey: activeKey,
+      endpointUrl: effectiveEndpoint,
       latencyMs: 12,
       fetchedAt: new Date().toLocaleTimeString(),
       elevationM: 214,
